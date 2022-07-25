@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="StateMachines" Class="StateMachineCodeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;E:\Code_2008\misc tool\StateSParse\StateSParse\StateMachines.mdf&quot;;Integrated Security=True;Network Library=dbnmpntw;User Instance=True" SettingsObjectName="StateMachineCodeGeneration.Properties.Settings" SettingsPropertyName="StateMachinesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.smEvents" Member="smEvents">
+    <Type Name="smEvent">
+      <Column Name="EventName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StateMachineDefinitionID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="smStateMachineDefinition_smEvent" Member="smStateMachineDefinition" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smStateMachineDefinition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.smStateMachineDefinition" Member="smStateMachineDefinitions">
+    <Type Name="smStateMachineDefinition">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="InitialState" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StateMachineDefinitionID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Member="AsGuid" Type="System.String" CanBeNull="false" />
+      <Association Name="smStateMachineDefinition_smEvent" Member="smEvents" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smEvent" />
+      <Association Name="smStateMachineDefinition_smState" Member="smStates" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smState" />
+      <Association Name="smStateMachineDefinition_smTransition" Member="smTransitions" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smTransition" />
+      <Association Name="smStateMachineDefinition_smAction" Member="smActions" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smAction" />
+    </Type>
+  </Table>
+  <Table Name="dbo.smStates" Member="smStates">
+    <Type Name="smState">
+      <Column Name="StateName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StateMachineDefinitionID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="StateID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="smStateMachineDefinition_smState" Member="smStateMachineDefinition" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smStateMachineDefinition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.smTransitions" Member="smTransitions">
+    <Type Name="smTransition">
+      <Column Name="StateMachineDefinitionID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EventID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EndStateID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="StateID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ActionID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Transition" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="smStateMachineDefinition_smTransition" Member="smStateMachineDefinition" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smStateMachineDefinition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.smActions" Member="smActions">
+    <Type Name="smAction">
+      <Column Name="ActionName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StateMachineDefinitionID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ActionID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="smStateMachineDefinition_smAction" Member="smStateMachineDefinition" ThisKey="StateMachineDefinitionID" OtherKey="StateMachineDefinitionID" Type="smStateMachineDefinition" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

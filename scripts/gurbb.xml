@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="gurbb" Start="Start" Current="Start">
+  <Actions>
+    <Action ActionName="OnBegin" />
+    <Action ActionName="NewAction1" />
+    <Action ActionName="NewAction2" />
+  </Actions>
+  <Events>
+    <Event EventName="Begin" />
+    <Event EventName="NewEvent1" />
+    <Event EventName="NewEvent2" />
+  </Events>
+  <States>
+    <State StateName="Start" />
+    <State StateName="NewState1" />
+    <State StateName="NewState2" />
+    <State StateName="NewState3" />
+    <State StateName="NewState4" />
+    <State StateName="NewState5" />
+    <State StateName="NewState6" />
+  </States>
+  <Transitions />
+</StateMachine>

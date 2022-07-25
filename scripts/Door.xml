@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="Door" Start="closed" Current="closed">
+  <Actions>
+    <Action ActionName="OnPush" />
+    <Action ActionName="OnPull" />
+    <Action ActionName="Onunlock" />
+    <Action ActionName="OnLock" />
+  </Actions>
+  <Events>
+    <Event EventName="push" />
+    <Event EventName="pull" />
+    <Event EventName="lock" />
+    <Event EventName="unlock" />
+  </Events>
+  <States>
+    <State StateName="closed" />
+    <State StateName="opened" />
+    <State StateName="locked" />
+  </States>
+  <Transitions>
+    <Transition Initial="closed" Event="push" Action="OnPush" Final="opened" />
+    <Transition Initial="closed" Event="lock" Action="OnLock" Final="locked" />
+    <Transition Initial="opened" Event="pull" Action="OnPull" Final="closed" />
+    <Transition Initial="locked" Event="unlock" Action="Onunlock" Final="closed" />
+  </Transitions>
+</StateMachine>

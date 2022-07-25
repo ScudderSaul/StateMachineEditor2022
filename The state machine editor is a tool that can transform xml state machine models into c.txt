@@ -1,0 +1,3 @@
+The state machine editor is a tool that can transform xml state machine models into c#, c++ or vb code. For c# it can also generate WPF and console test project wrappers. 
+Tools to create the XML from user choices are provided and the XML sessions can be saved and loaded.
+

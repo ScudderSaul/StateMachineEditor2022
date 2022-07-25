@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="Beast" Start="Wander" Current="Wander">
+  <Actions>
+    <Action ActionName="MoveThatWay" />
+    <Action ActionName="MoveAway" />
+    <Action ActionName="AttackEnemy" />
+    <Action ActionName="NoOpp" />
+    <Action ActionName="Rebirth" />
+  </Actions>
+  <Events>
+    <Event EventName="SoundHeard" />
+    <Event EventName="EnemySeen" />
+    <Event EventName="Die" />
+    <Event EventName="LowHealth" />
+    <Event EventName="NothingNew" />
+  </Events>
+  <States>
+    <State StateName="Wander" />
+    <State StateName="Chase" />
+    <State StateName="Spawn" />
+  </States>
+  <Transitions>
+    <Transition Initial="Spawn" Event="NothingNew" Action="NoOpp" Final="Wander" />
+    <Transition Initial="Spawn" Event="EnemySeen" Action="AttackEnemy" Final="Chase" />
+    <Transition Initial="Spawn" Event="SoundHeard" Action="MoveThatWay" Final="Wander" />
+    <Transition Initial="Wander" Event="EnemySeen" Action="AttackEnemy" Final="Chase" />
+    <Transition Initial="Wander" Event="SoundHeard" Action="MoveThatWay" Final="Wander" />
+    <Transition Initial="Wander" Event="LowHealth" Action="NoOpp" Final="Wander" />
+    <Transition Initial="Wander" Event="Die" Action="Rebirth" Final="Spawn" />
+    <Transition Initial="Wander" Event="NothingNew" Action="NoOpp" Final="Wander" />
+    <Transition Initial="Chase" Event="EnemySeen" Action="AttackEnemy" Final="Chase" />
+    <Transition Initial="Chase" Event="NothingNew" Action="NoOpp" Final="Wander" />
+    <Transition Initial="Chase" Event="LowHealth" Action="MoveAway" Final="Wander" />
+    <Transition Initial="Chase" Event="SoundHeard" Action="MoveThatWay" Final="Wander" />
+    <Transition Initial="Chase" Event="Die" Action="Rebirth" Final="Spawn" />
+  </Transitions>
+</StateMachine>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="StarShip" Start="Unint" Current="Unint">
+  <Actions draw="28" erase="29" fireone="27" initialize="20" lessforward="22" moreforward="21" movedown="24" moveup="23" nop="19" reset="30" switchdirection="26" wreck="25" />
+  <Events climb="20" crash="25" decend="22" default="16" drawnow="28" erasenow="27" faster="18" fire="23" nofire="24" reverse="21" slower="19" start="17" switch="26" />
+  <States crashed="17" destroyed="18" flying="16" shooting="15" uninit="14" />
+  <Transitions>
+    <Transition Initial="uninit" Event="start" Action="initialize" Final="flying" />
+    <Transition Initial="uninit" Event="default" Action="nop" Final="uninit" />
+    <Transition Initial="shooting" Event="nofire" Action="nop" Final="flying" />
+    <Transition Initial="shooting" Event="drawnow" Action="draw" Final="shooting" />
+    <Transition Initial="shooting" Event="erasenow" Action="erase" Final="shooting" />
+    <Transition Initial="shooting" Event="faster" Action="moreforward" Final="shooting" />
+    <Transition Initial="shooting" Event="slower" Action="lessforward" Final="shooting" />
+    <Transition Initial="shooting" Event="climb" Action="moveup" Final="shooting" />
+    <Transition Initial="shooting" Event="decend" Action="movedown" Final="shooting" />
+    <Transition Initial="shooting" Event="crash" Action="wreck" Final="crashed" />
+    <Transition Initial="shooting" Event="switch" Action="switchdirection" Final="shooting" />
+    <Transition Initial="shooting" Event="default" Action="nop" Final="shooting" />
+    <Transition Initial="flying" Event="fire" Action="fireone" Final="shooting" />
+    <Transition Initial="flying" Event="drawnow" Action="draw" Final="flying" />
+    <Transition Initial="flying" Event="erasenow" Action="erase" Final="flying" />
+    <Transition Initial="flying" Event="faster" Action="moreforward" Final="flying" />
+    <Transition Initial="flying" Event="slower" Action="lessforward" Final="flying" />
+    <Transition Initial="flying" Event="climb" Action="moveup" Final="flying" />
+    <Transition Initial="flying" Event="decend" Action="movedown" Final="flying" />
+    <Transition Initial="flying" Event="crash" Action="wreck" Final="crashed" />
+    <Transition Initial="flying" Event="switch" Action="switchdirection" Final="flying" />
+    <Transition Initial="flying" Event="default" Action="nop" Final="flying" />
+    <Transition Initial="crashed" Event="drawnow" Action="draw" Final="crashed" />
+    <Transition Initial="crashed" Event="erasenow" Action="erase" Final="crashed" />
+    <Transition Initial="crashed" Event="crash" Action="draw" Final="destroyed" />
+    <Transition Initial="crashed" Event="default" Action="nop" Final="crashed" />
+    <Transition Initial="destroyed" Event="drawnow" Action="reset" Final="uninit" />
+    <Transition Initial="destroyed" Event="default" Action="nop" Final="destroyed" />
+  </Transitions>
+</StateMachine>

@@ -1,0 +1,23 @@
+
+
+
+enemy_close
+enemy_far
+enemy_detect
+friend_detect
+friend_close
+friend_far
+Is_damaged
+Is_healed
+Dies
+Enemy_Dies
+Enemy_dammaged
+Follows
+Flees
+Is_missed
+
+Moving enemt_far
+Chasing
+Fleeing
+Fighting
+Waiting

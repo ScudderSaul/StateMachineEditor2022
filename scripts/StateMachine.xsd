@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="StateMachine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Actions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Action">
+                <xs:complexType>
+                  <xs:attribute name="ActionName" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Events">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Event">
+                <xs:complexType>
+                  <xs:attribute name="EventName" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="States">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="State">
+                <xs:complexType>
+                  <xs:attribute name="StateName" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Transitions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Transition">
+                <xs:complexType>
+                  <xs:attribute name="Initial" type="xs:string" use="required" />
+                  <xs:attribute name="Event" type="xs:string" use="required" />
+                  <xs:attribute name="Action" type="xs:string" use="required" />
+                  <xs:attribute name="Final" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string" use="required" />
+      <xs:attribute name="Start" type="xs:string" use="required" />
+      <xs:attribute name="Current" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

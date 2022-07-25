@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="SimpleGame" Start="ThinkingMove" Current="ThinkingMove">
+  <Actions>
+    <Action ActionName="TestValid" />
+  </Actions>
+  <Events>
+    <Event EventName="CheckValidMove" />
+  </Events>
+  <States>
+    <State StateName="ThinkingMove" />
+  </States>
+  <Transitions />
+</StateMachine>

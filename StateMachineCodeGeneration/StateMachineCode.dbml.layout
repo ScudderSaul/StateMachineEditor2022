@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="StateMachineCode">
+  <DataContextMoniker Name="/StateMachineCodeDataContext" />
+  <nestedChildShapes>
+    <classShape Id="536df992-d489-4744-bc16-fd58b692ae3e" absoluteBounds="1.5, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/StateMachineCodeDataContext/smEvent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22cfaf93-88a8-46f8-af8b-2d5edd629f13" absoluteBounds="1.5150000000000006, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f10c5e75-a9f9-46ad-acea-8605d1f288ad" absoluteBounds="4.125, 2.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/StateMachineCodeDataContext/smStateMachineDefinition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="16b593fc-daac-4ad9-9d28-2734d7ba4ddf" absoluteBounds="4.1400000000000006, 2.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1f94091c-35e9-4862-ad70-0ae9a9ec24bb" absoluteBounds="4, 0.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/StateMachineCodeDataContext/smState" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1dcf3df5-e15b-4218-937b-d51b701b595e" absoluteBounds="4.0150000000000006, 1.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03f185ef-3f62-4df9-94c2-699915bdad56" absoluteBounds="1.625, 2.375, 2, 1.9631982421875">
+      <DataClassMoniker Name="/StateMachineCodeDataContext/smTransition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="72a23638-27cd-4832-8ec5-567c8bc7b6a4" absoluteBounds="1.6400000000000006, 2.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.125 : 2.25); (3.5 : 1.8862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/StateMachineCodeDataContext/smStateMachineDefinition/smStateMachineDefinition_smEvent" />
+      <nodes>
+        <classShapeMoniker Id="f10c5e75-a9f9-46ad-acea-8605d1f288ad" />
+        <classShapeMoniker Id="536df992-d489-4744-bc16-fd58b692ae3e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.0937525 : 2.25); (5.0937525 : 2.0112939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StateMachineCodeDataContext/smStateMachineDefinition/smStateMachineDefinition_smState" />
+      <nodes>
+        <classShapeMoniker Id="f10c5e75-a9f9-46ad-acea-8605d1f288ad" />
+        <classShapeMoniker Id="1f94091c-35e9-4862-ad70-0ae9a9ec24bb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.125 : 3.10179768880208); (3.625 : 3.10179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StateMachineCodeDataContext/smStateMachineDefinition/smStateMachineDefinition_smTransition" />
+      <nodes>
+        <classShapeMoniker Id="f10c5e75-a9f9-46ad-acea-8605d1f288ad" />
+        <classShapeMoniker Id="03f185ef-3f62-4df9-94c2-699915bdad56" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c367126a-f214-4a68-bdbe-043bee1721a0" absoluteBounds="4.25, 4.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/StateMachineCodeDataContext/smAction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c028afd-d851-4255-9406-563b5379a755" absoluteBounds="4.2650000000000006, 4.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.1875 : 3.82859537760417); (5.1875 : 4.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StateMachineCodeDataContext/smStateMachineDefinition/smStateMachineDefinition_smAction" />
+      <nodes>
+        <classShapeMoniker Id="f10c5e75-a9f9-46ad-acea-8605d1f288ad" />
+        <classShapeMoniker Id="c367126a-f214-4a68-bdbe-043bee1721a0" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

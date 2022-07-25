@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="foo" Start="done" Current="done">
+  <Actions>
+    <Action ActionName="act" />
+  </Actions>
+  <Events>
+    <Event EventName="grog" />
+  </Events>
+  <States>
+    <State StateName="prep" />
+    <State StateName="done" />
+  </States>
+  <Transitions>
+    <Transition Initial="prep" Event="grog" Action="act" Final="prep" />
+  </Transitions>
+</StateMachine>

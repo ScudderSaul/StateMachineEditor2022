@@ -1,0 +1,362 @@
+﻿<UserControl x:Class="StateMachineEditor2019.Controls.StateMachineEditorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:stateMachineEditor2015="clr-namespace:_ZenSoft.StateMachineEditor2017"
+             Background="#FFDFE5E5"
+             Foreground="Black" 
+             mc:Ignorable="d"
+             d:DesignHeight="1000" d:DesignWidth="1200" FontSize="10"
+             Name="MyToolWindow" BorderBrush="#FF371E80" BorderThickness="2">
+
+    <UserControl.Resources>
+        <Color x:Key="GreenOne">#FF080808</Color>
+        <Color x:Key="GreenEdge">#FF08161F</Color>
+        <Color x:Key="ListBacker">#FFEDF9FF</Color>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left">
+
+
+        <StackPanel Margin="0" >
+            <Menu IsMainMenu="True" FontFamily="/SmEditor;component/Fonts/#SimHei" FontSize="13">
+                <MenuItem x:Name="FileMenuItem" Header="File">
+                    <MenuItem x:Name="FileOpenMenuItem" Header="Open" Click="FileOpenMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/Document.bmp"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="FileNewMenuItem" Header="New" Click="FileNewMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/create.png" Width="20"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="FileSaveMenuItem" Header="Save" Click="FileSaveMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/Save.bmp"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem x:Name="FileSaveAsMenuItem" Header="Save As" Click="FileSaveAsMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/Save.bmp"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="FilePrintMenuItem" Header="Print" Click="FilePrintMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/Print.bmp"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem  Header="Edit">
+                    <MenuItem x:Name="StateMenuItem" Header="Add a State" Click="StateMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Add the name of an state representing the sarting or ending machine state at the begining or end of a transition."></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem x:Name="ActionMenuItem" Header="Add an Action" Click="ActionMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Add the name of an action run by the transition between two states."></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem x:Name="EventMenuItem" Header="Add an Event" Click="EventMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Add the name of an event that when occuring in some states will trigger an action and transition to a new ot he same state."></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem  Header="Generate">
+                    <MenuItem x:Name="CodeMenuItem" Header="Generate Code" Click="CodeMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Generate c#, c++ or VB code that implements the current state machine"></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+
+                    <MenuItem x:Name="PatternCodeMenuItem" Header="Generate State Pattern Code" 
+                               Click="PatternCodeMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Generate c#, c++ or VB code that implements the current state machine as a State Pattern"></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+
+                    <MenuItem x:Name="WpfMenuItem" Header="Generate c# Code with WPF project" Click="GenerateCodePlusWinProj_Click">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Generate c# code that implements the current state machine with WPF project files"></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+
+                    <MenuItem x:Name="ConsoleMenuItem" Header="Generate c# Code with Console project" Click="GenerateCodePlusConsoleProj_Click">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Generate c# code that implements the current state machine with Console project files"></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+
+                    <MenuItem x:Name="MVCMenuItem" Header="Generate c# Code for MVC" Click="GenerateMvcButton_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Generate c# code that implements the current state machine as example MVCF project files"></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+
+                    <MenuItem x:Name="PatternProjectMenuItem" Header="Generate Pattern WPF c# Project" 
+                              Click="PatternProjectMenuItemOnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Generate code that implements the current state machine as as a c#, c++ or vb state pattern, project files for c#"></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+
+
+                </MenuItem>
+                <MenuItem Header="Analize">
+                    <MenuItem x:Name="AnalizeMenuItem" Header="Analize State Machine" Click="AnalizeMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem  Header="Help">
+                    <MenuItem x:Name="HelpMenuItem" Header="Help" Click="HelpMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="AboutMenuItem" Header="About" Click="AboutMenuItem_OnClick">
+                        <MenuItem.Icon>
+                            <Image Source="../Resources/FormulaEvaluator.bmp"/>
+                        </MenuItem.Icon>
+                        <MenuItem.ToolTip>
+                            <TextBlock Text="Find common problems in the state machine... Unused states etc."></TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="3" MaxWidth="1700" MaxHeight="1000">
+                    <WrapPanel>
+                        <GroupBox Header="Name and Startup" HorizontalAlignment="Left" Margin="1,1,1,1" VerticalAlignment="Top" Height="Auto" Width="460" >
+                            <StackPanel Margin="0,0,-2,0">
+                                <WrapPanel x:Name="StartupWrapPanel" Width="400">
+                                    <GroupBox Margin="3">
+                                        <GroupBox.Header>
+                                            <TextBlock x:Name="SetNameButton" Text=" Machine Name" ></TextBlock>
+                                        </GroupBox.Header>
+                                        <TextBox x:Name="StateMachineNameBlock" MinWidth="140" MinHeight="26"   VerticalAlignment="Top" Margin="2"
+                                             TextChanged="StateMachineNameBlock_OnTextChanged" 
+                                             ToolTip="The name of this state machine."></TextBox>
+
+                                    </GroupBox>
+                                    <GroupBox Header="Starting State" Margin="3">
+                                        <ComboBox x:Name="StartupListBox" MinWidth="140" SelectionChanged="StartupListBox_OnSelectionChanged" ToolTip="The state the state machine is in when it starts" 
+                                                 MaxHeight="200">
+                                            <ComboBox.Background>
+                                                <SolidColorBrush Color="{DynamicResource ListBacker}"/>
+                                            </ComboBox.Background>
+                                        </ComboBox>
+                                    </GroupBox>
+                                    <GroupBox Header="Output Language" Margin="3">
+                                        <ComboBox x:Name="OutputLanguageListBox" MinWidth="140"  MaxHeight="120" ToolTip="The source code generated will be in this languager" SelectionChanged="OutputLanguageListBox_OnSelectionChanged">
+                                            <ComboBox.Background>
+                                                <SolidColorBrush Color="{DynamicResource ListBacker}"/>
+                                            </ComboBox.Background>
+                                        </ComboBox>
+                                    </GroupBox>
+                                </WrapPanel>
+                                <WrapPanel x:Name="XtraWrpPanel">
+                                    <Expander ExpandDirection="Right" x:Name="AboutExpander" Header="About">
+                                        <StackPanel MaxWidth="300">
+                                            <TextBlock Margin="5" Text="Copyright Saul Scudder 2006-2014" ></TextBlock>
+                                            <TextBlock Margin="5" Text="The Generated code is free of copywrite or claim" ></TextBlock>
+                                            <TextBlock  Margin="5" Text="At this time only the c# output has been tested. Report bugs or problems to the StateMachineEdi​torPackage page at http://visualstudiogallery.msdn.microsoft.com" TextWrapping="Wrap"></TextBlock>
+                                        </StackPanel>
+                                    </Expander>
+                                    <Expander ExpandDirection="Right" x:Name="HelpExpander" Header="Help">
+                                        <StackPanel MaxWidth="400">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="LoadExample" 
+                                                    Content="Load Example" Click="OpenExample" Margin="2" Background="LightBlue" Width="80" HorizontalAlignment="Left"/>
+                                                <Button x:Name="HtmlButton" Content="Show Features List" Margin="2" Background="LightGreen" Width="100" Click="HtmlButton_OnClick"/>
+                                            </StackPanel>
+
+                                            <TextBlock Margin="5" Text="The State Machine editor is used to generate state machine code from a skeleton xml design. The XML may either be loaded using the file menu or will be created as parts are added using the editor." 
+                			MaxWidth="300" TextWrapping="Wrap"/>
+                                            <TextBlock Margin="5"  Text="To create a State Machine" FontStyle="Oblique"  TextWrapping="Wrap"/>
+                                            <TextBlock Margin="5"  MaxWidth="300"  Text="A state machine is a set of Transitions from a starting State when an Event arrives that becomes a final State at the end of the Transition that will perform an Action during the Transition." 
+                			TextWrapping="Wrap"/>
+                                            <TextBlock  Margin="5"  MaxWidth="300"  Text ="Add new States using the add States window, add Event names using the event window, and the names Actions using the Actions window." TextWrapping="Wrap"/>
+                                            <Image Source="../Resources/AddState.png" MaxWidth="240"/>
+                                            <TextBlock Margin="5"  MaxWidth="300"  Text="Then create a Transition by selecting the starting and final State as well as an Event and an Action, when all 4 are selected press the 'Add Transition' button." 
+                			TextWrapping="Wrap" />
+                                            <TextBlock Margin="5"  MaxWidth="300"  Text="The Transition expander shows a list of all transitions and when one is selected, reselects the transition elements so it can be deleted." 
+                			TextWrapping="Wrap" />
+                                            <TextBlock  Margin="5" Text="Before saving, enter a MachineName and select a choice from the Starting State list to set the first State the machine uses." TextWrapping="Wrap" />
+                                            <Image Source="../Resources/StartupState.png" MaxWidth="240"/>
+                                            <TextBlock  Margin="5" Text="The XML can be saved and loaded to continue an edit sesion later using the menu and the 'Save XML' button" TextWrapping="Wrap" />
+                                            <Image Source="../Resources/Simple Transition.png" MaxWidth="240"/>
+                                            <TextBlock Margin="5"  Text="When you are ready to generate source code, press the 'Generate c# Code' button" TextWrapping="Wrap" />
+                                            <TextBlock Margin="5"  Text="The source code generated is the skeleton in the language chosen and simple test files." TextWrapping="Wrap" />
+                                            <!-- TextBlock  Margin="5" Text="To run the tests add  '= new MachineName()' to the first field in the main Test class." TextWrapping="Wrap" ></ -->
+                                            <!-- Image Source="Resources/TestClassChange.png" MaxWidth="240"></Image -->
+                                            <TextBlock  Margin="5" TextWrapping="Wrap"
+                                                        Text="To Create state machine code with a test project press Generate Console or Generate Wpf button."/>
+                                            <TextBlock  Margin="5" TextWrapping="Wrap"
+                                                        Text="The transition expander will expand to show a list of all transitions in the state machine. Selecting from the list selects the parts of the transition, ie. the Start, Event, Action and Final State." ></TextBlock>
+
+                                        </StackPanel>
+
+                                    </Expander>
+                                    <Expander x:Name="XmlExpander" IsExpanded="False"  Header="XML" ExpandDirection="Right">
+                                        <RichTextBox x:Name="XmlText" MaxHeight="300" VerticalScrollBarVisibility="Auto" />
+                                    </Expander>
+                                    <Expander x:Name="AnalizeExpander" IsExpanded="False" Header="Analize" ExpandDirection="Right" Expanded="AnalizeExpander_Expanded">
+                                        <stateMachineEditor2015:ShowUnused x:Name="AnalizerDisplay"></stateMachineEditor2015:ShowUnused>
+                                    </Expander>
+                                    <Expander ExpandDirection="Right" Header="Transitions" IsExpanded="False" x:Name="TransitionsExpander">
+                                        <StackPanel x:Name="TransitionsListPanel">
+                                        </StackPanel>
+                                    </Expander>
+                                </WrapPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Name="CommandGroup" Header="Commands" >
+
+                            <WrapPanel Margin="5" MaxWidth ="300">
+
+                                <Button x:Name="SaveXmlButton" Width="60" Height="24" Content="Save" Click="OnSaveXmlClick" Margin="2"
+                                    ToolTip="Saves the state machine as an xml file."/>
+                                <Button x:Name="OpenXmlButton" Width="60" Height="24" Content="Open" Click="OpenFile_Click" Margin="2"
+                                    ToolTip="Opens a state machine in xml file format"/>
+
+                                <Button x:Name="GenerateCodeButton" Height="24" Content="Generate c# code (not-Pattern)" Click="GenerateCodeButton_OnClick" Margin="2"
+                                    ToolTip="Generates c#, c++ or VB code that implements a state machine"/>
+
+                                <Button x:Name="GenerateSmCodeButton"  Height="24" Content="Generate c# State Pattern Code" Click="GenerateStatePatternCodeButton_OnClick" Margin="2"
+                                    ToolTip="Generates c#, c++ or VB code that implements the State Pattern"/>
+
+                                <Button x:Name="GenerateCodePlusWinProj" Content="Generate WPF c# Project" Height="24" Click="GenerateCodePlusWinProj_Click" Margin="2"
+                                    ToolTip="Generates c# state machine code and files for a Windows Presentation Foundation Project" />
+                                <Button x:Name="GenerateCodePlusConsoleProj" Content="Generate Console c# Project" Height="24" Click="GenerateCodePlusConsoleProj_Click" Margin="2"
+                                    ToolTip="Generates c# state machine code and files for a Console Project" />
+
+
+                                <Button x:Name="GenerateStatePatternButton" Width="150" Height="24" 
+                                            Content="Generate Pattern WPF c# Project" Click="GenerateStatePatternProjectCodeButton_OnClick"  Margin="2"
+                                    ToolTip="Generates c#, state machine pattern and project files."/>
+                                <Button x:Name ="GenerateMvcButton" FontSize="11" Margin="2"
+                                    Content="Generate MVC5 c#" Click="GenerateMvcButton_OnClick"
+                                    Width="100" Height="24" ToolTip="Generates a MVC5 controller class in c#"/>
+                            </WrapPanel>
+                        </GroupBox>
+
+
+                    </WrapPanel>
+                    <WrapPanel>
+                        <GroupBox Header="Transition Initial States" HorizontalAlignment="Left" Margin="1,1,1,1" VerticalAlignment="Top" Height="Auto" Width="Auto" >
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Border >
+                                    <ListBox x:Name="StateListBox" MinWidth="150" MinHeight="160" MaxHeight="400"  
+                                 SelectionChanged="StateListBox_OnSelectionChanged" 
+                                 SelectionMode="Single" ToolTip="The list choices for inital states in the state machine">
+
+                                    </ListBox>
+                                </Border>
+                                <StackPanel Margin="5">
+                                    <Button Width="80" Height="24" x:Name="AddStateButton" Content="Add State" Click="OnAddStateClick" Margin="2"
+                                        ToolTip="Add a State to the lists of Inital and Final state choices."></Button>
+                                    <Button Width="80" Height="24" x:Name="DeleteStateButton" Content="Delete State" Click="OnDeleteStateClick" Margin="2"></Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Transition Event" HorizontalAlignment="Left" Margin="1,1,1,1" VerticalAlignment="Top" Height="Auto" Width="Auto" >
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Border >
+                                    <ListBox x:Name="EventListBox" MinWidth="150" MinHeight="160" MaxHeight="400"
+                                 SelectionChanged="EventListBox_OnSelectionChanged" 
+                                 SelectionMode="Single" ToolTip="The list of events that when occuring in some states will trigger an action and transition to a new ot he same state.">
+
+                                    </ListBox>
+                                </Border>
+                                <StackPanel  Margin="5">
+                                    <Button Width="80" Height="24" x:Name="AddEventButton" Content="Add Event" Click="OnAddEventClick" Margin="2"
+                                        ToolTip="Add the name of an event that when occuring in some states will trigger an action and transition to a new ot he same state."></Button>
+                                    <Button Width="80" Height="24" x:Name="DeleteEventButton" Content="Delete Event" Click="OnDeleteEventClick" Margin="2"></Button>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Transition Action" HorizontalAlignment="Left" Margin="1,1,1,1" VerticalAlignment="Top" Height="Auto" Width="Auto">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Border >
+                                    <ListBox x:Name="ActionListBox" MinWidth="150" MinHeight="160" MaxHeight="400"
+                                 SelectionChanged="ActionListBox_OnSelectionChanged" 
+                                 SelectionMode="Single"  ToolTip="The list of actions to be performed durring transitions between states">
+
+                                    </ListBox>
+                                </Border>
+                                <StackPanel Margin="5">
+                                    <Button Width="80" Height="24" x:Name="AddActionButton" Content="Add Action" Click="OnAddActionClick" Margin="2"
+                                        
+                                        ToolTip="Add an action to the list of actions run during a transition."></Button>
+                                    <Button Width="80" Height="24" x:Name="DeleteActionButton" Content="Delete Action" Click="OnDeleteActionClick" Margin="2"></Button>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Transition Final State" HorizontalAlignment="Left" Margin="1,1,1,1" VerticalAlignment="Top" Height="Auto" Width="Auto" >
+
+                            <StackPanel Orientation="Horizontal">
+                                <Border >
+                                    <ListBox x:Name="FinalStateListBox" MinWidth="150"  MinHeight="160" MaxHeight="400"
+                                 SelectionChanged="FinalStateListBox_OnSelectionChanged" 
+                                 SelectionMode="Single"  ToolTip="The list of  states that may be selected a the result of a transition between states">
+
+                                    </ListBox>
+                                </Border>
+                                <StackPanel Margin="5">
+                                    <Button Width="80" Height="28" x:Name="AddTransitionButton" Content="Add Transition" Click="OnAddTransitionClick" ToolTip="When the start, end event and  action are selected creates a transition" 
+                                 UseLayoutRounding="True"></Button>
+                                    <Button Width="80" Height="24" x:Name="DeleteTransitionButton" Content="Delete Transition" Click="OnDeleteTransitionClick" Margin="2"
+                                ToolTip="When a start and end state and an event and action are all selected, if there is a maching transition it is deleted."></Button>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                    </WrapPanel>
+                </StackPanel >
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

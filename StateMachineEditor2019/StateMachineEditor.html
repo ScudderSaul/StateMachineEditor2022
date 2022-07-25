@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+    .Code{
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 2px;
+    border-color:  rgba(75,0,130,255.00);
+    font-weight: lighter;
+    background-color:  rgba(240,248,255,255.00);
+    font-size: 60%;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    }
+.GenList{
+font-size: 90%;
+color:  rgba(42,73,224,255.00);
+margin: 2px;
+line-height: 95%;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+list-style-type: square;
+}
+</style>
+
+    <title>State Machine Editor</title>
+</head>
+<body>
+    <h3>The State Machine Editor</h3>
+
+    <p>A state machine is a set of Transitions from a starting State when an Event arrives that becomes a final State at the end of the Transition and that will perform some Action during the Transition</p>
+
+    <p>The State Machine Editor is a tool that can translate xml state machine models into c#, c++ or vb code.</p>
+    <p>Features:</p>
+    <ul class="GenList">
+
+        <li>
+            Has UI tools to create xml models of State Machines from user selections.
+            <ul>
+                <li>States, Actions and Events are added by pressing an add button and naming them. </li>
+                <li>Transitions from one state to another are added by selecting an 'Initial State', an 'Event', an 'Action' to be performed and a 'Final State', then presing Add Transition </li>
+                <li>An expander displays a list of all transitions in a state machine. Selecting in the list re-selects the individual parts of the transition chosen. To be viewed or deleted.
+                <li>A button in the tool's help expander generates an example state machine.</li>
+                <li>Unused states or dead ends can be traced using the Analyze tool on the menu.</li>
+            </ul>
+
+        </li>
+
+        <li>Edit sessions are persisted by saving and loading the xml.</li>
+        <li>
+            A button press converts xml models into source code. Either:
+            <ul>
+                <li>
+                    A complete state machine in c#.
+                </li>
+                <li>
+                    c++ or vb (may need edits to use.)
+                </li>
+                <li>In c# Windows Console projects with the state machine source and test events </li>
+                <li>c# WPF projects with the state machine source and test events</li>
+                <li>c# WPF projects with a 2nd class design in a State Machine Pattern.  </li>
+                <li>Parts for a very simple MVC project.</li>
+            </ul>
+        </li>
+    </ul>
+
+<img src="http://dragonsawaken.net/leho/examplesm/sm2015.jpg" width="620"/>
+
+<h5>The 2nd generated API for the state machines uses the State Machine Pattern</h5>
+
+<p>In the generated c# and WPF project that a button is created to trigger processing each event.
+    Each state class has StateEntry, StateExit and Action events. The current state changes when an Action returns true.
+    The Test Project generated maps each state's events to show the machine status.
+</p>
+
+<pre class="Code">
+
+        ... in MainWindow.xmal.cs 
+      public void OnLoaded(object obj, System.EventArgs e)
+        {
+            this.SetUpEvents();
+            this._stateMachineMonster.StateChanged += this.OnStateChanged;
+            ...
+        }
+        ...
+        public void SetUpEvents()
+        {
+            IState baseState = this._stateMachineMonster.CurrentState;
+            if (("Moving" == baseState.StateName))
+            {
+                Moving stateobj = ((Moving)(baseState));
+                stateobj.LookAbout += this.AnyAction;
+                stateobj.ChompEnemy += this.AnyAction;
+                stateobj.ChargeEnemy += this.AnyAction;
+                stateobj.Nothing += this.AnyAction;
+                stateobj.GoToFriend += this.AnyAction;
+                stateobj.StateEntry += this.AnyEntry;
+                stateobj.StateExit += this.AnyExit;
+                return;
+            }
+            if (("Chasing" == baseState.StateName))
+            {
+</pre>
+  
+<p>In the statemachine class the current state is checked for an Action for the stateevent and either a new state name or null is returned.
+    The StateChanged event is for use when the new CurrentState needs further initialization after it is changed.</p>
+
+<pre class="Code">
+     ... in the statemachine class events change the State class instance in an IState interface object 'CurrentState' 
+        public void MachineEventArrival(string stateevent)
+        {
+    // test if the stateevent runs an action if so run it and return a new statename or null
+            string state = this.CurrentState.StateEventCheck(stateevent);   
+    // if the state remains the current state no StateEntry, StateChange or StateExit events need to be run
+            if ((state == this.CurrentState.StateName))
+            {
+                return;
+            }
+            if ((state != null))
+            {
+    // runs the old state class's StateExit event
+                this.CurrentState.OnExit(stateevent);  
+    // puts the new state class in CurrentState
+                this.StateFromStateName(state);  
+    // if it is being used by someone run the StateChange event     
+                if ((this.StateChanged != null))       
+                {
+                    this.StateChanged(this, new EventArgs());
+                }
+    // run the new state class's StateEntry event
+                this.CurrentState.OnEntry(stateevent);  
+            }
+        }
+</pre>
+
+<h5>The first API between the real world and the State Machines was designed as a multicasting black box</h5>
+<p> 
+    A button is created to trigger processing each event. The stack traces shown below show how the event arrives, is tested, any Action run, and the state change if one occures.
+</p>
+   
+    <pre class="Code"> 
+              private void EventButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+              {
+...
+              case "EnemySuspected":
+                   this.chevnt = "EnemySuspected";
+                   // check if 'EnemySuspected' event is valid
+                   evtst = _monster.MonsterInputReady.EventsReadyFromState(_monster.GetCurrentState());
+                   if(evtst != null)
+                   {
+                   // tell the state machine to run the event 'EnemySuspected'
+                   retv = _monster.RunMonsterEventEnemySuspected(DateTime.Now.ToString());
+                   }
+                   break;     
+</pre>
+    
+    <p> For this to work, methods are attached at start up to events that come from the state machine. </p>
+    <pre class="Code">
+        public void StartTest()
+        {
+        _monster.MonsterEventEnemyClose += this.TestInputEventEnemyClose;  
+        _monster.MonsterEventEnemyFound += this.TestInputEventEnemyFound;
+        _monster.MonsterEventEnemySuspected += this.TestInputEventEnemySuspected;  
+//...missing
+        _monster.MonsterActions.MonsterActionLookAbout += this.TestActionEventLookAbout;  
+        _monster.MonsterActions.MonsterActionChompEnemy += this.TestActionEventChompEnemy;
+        _monster.MonsterActions.MonsterActionChargeEnemy += this.TestActionEventChargeEnemy;
+//...
+        _monster.MonsterInputReady.MovingCheckEventReady += this.CheckForEventInStateMoving;  
+        _monster.MonsterInputReady.ChasingCheckEventReady += this.CheckForEventInStateChasing;
+        _monster.MonsterInputReady.FleeingCheckEventReady += this.CheckForEventInStateFleeing;  
+//...
+        }
+    </pre>
+    <p>
+        The state machine tests if an event is valid for the state named 'Moving'
+        The test code logs that it's checking
+    </p>
+    <p>Call Stack</p>
+    <ol class="GenList">
+    <li> MonsterTestApp.exe!sm_Monster.MainWindow.CheckForEventInStateMoving(object sender, sm_Monster.MonsterTestEventsReadyArgs e)</li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.MonsterTestEventsReady.RunMovingCheckEventReady(string st)
+        </li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.MonsterTestEventsReady.EventsReadyFromState(string st)
+        </li>
+    <li>   MonsterTestApp.exe!sm_Monster.MainWindow.EventButtonOnClick(object sender, System.Windows.RoutedEventArgs routedEventArgs)</li>
+    </ol>
+    <pre class="Code">
+    public string CheckForEventInStateMoving(object sender, MonsterTestEventsReadyArgs e)
+    {
+        string nowstate = this._monster.GetCurrentState();
+        string runs = " running CheckForEventInStateMoving";
+        string message = string.Format("{0} In state {1} with id = {2} inst = {3}", runs, nowstate, e.Sm_ID, e.Sm_Instance);
+        this.Writer(message);
+        System.Collections.Generic.Dictionary<string, int>
+        validevnts = this._monster.MonsterInputReady.ListEventsFromState("Moving");
+        if (validevnts.ContainsKey(this.chevnt))
+        {
+            return this.chevnt;
+        }
+            return null;
+    }
+  </pre>
+   
+    <p>
+        Called by the state machine when an event is known to be valid for the current state.
+        The test code logs that the event arived
+    </p>
+    <p>Call Stack</p>
+    <ol class="GenList">
+    <li>
+            MonsterTestApp.exe!sm_Monster.MainWindow.TestInputEventEnemySuspected(object sender, sm_Monster.MonsterInputEventArgs e)
+        </li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.Monster.RunMonsterEventEnemySuspected(string st)
+        </li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.MainWindow.EventButtonOnClick(object sender, System.Windows.RoutedEventArgs routedEventArgs)
+        </li>
+    </ol>
+    
+    <pre class="Code">
+        public bool TestInputEventEnemySuspected(object sender, MonsterInputEventArgs e)
+        {
+            EventTextBlock.Text = "EnemySuspected";
+            string nowstate = this._monster.GetCurrentState();
+            string runs = " running MonsterEventEnemySuspected";
+            string message = string.Format("{0} In state {1} [{2}] for id = {3} instance = {4}", runs, nowstate, e.Comment, e.Sm_ID, e.Sm_Instance);
+            this.Writer(message);
+            return true;
+        }
+        </pre>
+   
+    <p>Called by the state machine to perform the the action 'LookAbout'</p>
+    <p>Call Stack</p>
+    <ol class="GenList">
+    <li>MonsterTestApp.exe!sm_Monster.MainWindow.TestActionEventLookAbout(object sender, sm_Monster.MonsterActionsEventArgs e) </li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.MonsterActionsEvents.RunMonsterActionLookAbout(long id, long inst)
+        </li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.Monster.st_Moving(string evnt)
+        </li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.Monster.RunEventFromState(string evnt)
+        </li>
+    <li>
+            MonsterTestApp.exe!sm_Monster.Monster.RunMonsterEventEnemySuspected(string st)
+        </li>
+    <li>    MonsterTestApp.exe!sm_Monster.MainWindow.EventButtonOnClick(object sender, System.Windows.RoutedEventArgs routedEventArgs)</li>
+    </ol>
+    
+    <pre class="Code">
+        public bool TestActionEventLookAbout(object sender, MonsterActionsEventArgs e)
+        {
+            ActionTextBlock.Text = "LookAbout";
+            string nowstate = this._monster.GetCurrentState();
+            string runs = " running Action MonsterEvent_LookAbout";
+            string message = string.Format("{0} In state {1} with id = {2} inst = {3}", runs, nowstate, e.Sm_ID, e.Sm_Instance);
+            this.Writer(message);
+            return true;
+        }
+</pre>
+   
+</body>
+</html>

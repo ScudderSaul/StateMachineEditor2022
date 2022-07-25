@@ -1,0 +1,20 @@
+﻿<#@ template language="C#" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace <#=SmCodeGeneration.SmAppNameSpace#>
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Test<#=SmCodeGeneration.SmSmName#> test = new Test<#=SmCodeGeneration.SmSmName#>();
+            test.StartTest();
+            test.ShowList();
+            test.ChooseEvent();
+        }
+    }
+}

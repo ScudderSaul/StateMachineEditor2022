@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="Monster" Start="Moving" Current="Moving">
+  <Actions>
+    <Action ActionName="LookAbout" />
+    <Action ActionName="ChompEnemy" />
+    <Action ActionName="ChargeEnemy" />
+    <Action ActionName="Nothing" />
+    <Action ActionName="GoToFriend" />
+    <Action ActionName="RunAway" />
+    <Action ActionName="Rebirth" />
+    <Action ActionName="Purr" />
+  </Actions>
+  <Events>
+    <Event EventName="EnemyClose" />
+    <Event EventName="EnemyFound" />
+    <Event EventName="EnemySuspected" />
+    <Event EventName="FriendDetected" />
+    <Event EventName="FriendFound" />
+    <Event EventName="FriendNear" />
+    <Event EventName="Wounded" />
+    <Event EventName="Healed" />
+    <Event EventName="Dies" />
+    <Event EventName="EnemyDies" />
+    <Event EventName="EnemyDamaged" />
+    <Event EventName="CriticalWound" />
+    <Event EventName="EnemyEscaped" />
+    <Event EventName="Miracle" />
+    <Event EventName="NewEvent14" />
+  </Events>
+  <States>
+    <State StateName="Moving" />
+    <State StateName="Chasing" />
+    <State StateName="Fleeing" />
+    <State StateName="Fighting" />
+    <State StateName="Searching" />
+    <State StateName="Dead" />
+    <State StateName="Waiting" />
+  </States>
+  <Transitions>
+    <Transition Initial="Moving" Event="EnemySuspected" Action="LookAbout" Final="Searching" />
+    <Transition Initial="Moving" Event="EnemyClose" Action="ChompEnemy" Final="Fighting" />
+    <Transition Initial="Moving" Event="EnemyFound" Action="ChargeEnemy" Final="Fighting" />
+    <Transition Initial="Moving" Event="FriendDetected" Action="Nothing" Final="Moving" />
+    <Transition Initial="Moving" Event="FriendNear" Action="GoToFriend" Final="Waiting" />
+    <Transition Initial="Chasing" Event="EnemyClose" Action="ChompEnemy" Final="Fighting" />
+    <Transition Initial="Chasing" Event="EnemyEscaped" Action="LookAbout" Final="Searching" />
+    <Transition Initial="Chasing" Event="EnemyFound" Action="ChargeEnemy" Final="Fighting" />
+    <Transition Initial="Fleeing" Event="EnemyClose" Action="RunAway" Final="Fleeing" />
+    <Transition Initial="Fleeing" Event="EnemySuspected" Action="RunAway" Final="Fleeing" />
+    <Transition Initial="Fleeing" Event="EnemyFound" Action="RunAway" Final="Fleeing" />
+    <Transition Initial="Fleeing" Event="FriendDetected" Action="LookAbout" Final="Searching" />
+    <Transition Initial="Fleeing" Event="FriendFound" Action="GoToFriend" Final="Waiting" />
+    <Transition Initial="Fleeing" Event="FriendNear" Action="Nothing" Final="Waiting" />
+    <Transition Initial="Fighting" Event="EnemyClose" Action="ChompEnemy" Final="Fighting" />
+    <Transition Initial="Fighting" Event="Wounded" Action="ChompEnemy" Final="Fighting" />
+    <Transition Initial="Fighting" Event="CriticalWound" Action="RunAway" Final="Fleeing" />
+    <Transition Initial="Fighting" Event="EnemyDamaged" Action="ChompEnemy" Final="Fighting" />
+    <Transition Initial="Fighting" Event="EnemyDies" Action="Nothing" Final="Moving" />
+    <Transition Initial="Fighting" Event="Dies" Action="Nothing" Final="Dead" />
+    <Transition Initial="Fighting" Event="EnemyEscaped" Action="LookAbout" Final="Searching" />
+    <Transition Initial="Searching" Event="EnemyFound" Action="ChargeEnemy" Final="Chasing" />
+    <Transition Initial="Searching" Event="FriendFound" Action="GoToFriend" Final="Moving" />
+    <Transition Initial="Searching" Event="FriendNear" Action="GoToFriend" Final="Waiting" />
+    <Transition Initial="Searching" Event="EnemyEscaped" Action="Nothing" Final="Moving" />
+    <Transition Initial="Waiting" Event="Healed" Action="Purr" Final="Moving" />
+    <Transition Initial="Waiting" Event="EnemySuspected" Action="LookAbout" Final="Waiting" />
+    <Transition Initial="Waiting" Event="EnemyFound" Action="ChargeEnemy" Final="Chasing" />
+    <Transition Initial="Dead" Event="Miracle" Action="Rebirth" Final="Moving" />
+  </Transitions>
+</StateMachine>

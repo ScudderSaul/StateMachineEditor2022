@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StateMachine Name="RollerBall" Start="Resting" Current="Resting">
+  <Actions>
+    <Action ActionName="CalkPosition" />
+    <Action ActionName="Redraw" />
+  </Actions>
+  <Events>
+    <Event EventName="MouseStart" />
+    <Event EventName="MouseChange" />
+    <Event EventName="MouseEnd" />
+  </Events>
+  <States>
+    <State StateName="Resting" />
+    <State StateName="NeedCalkulation" />
+    <State StateName="NeedRedraw" />
+  </States>
+  <Transitions>
+    <Transition Initial="Resting" Event="MouseStart" Action="CalkPosition" Final="Resting" />
+    <Transition Initial="Resting" Event="MouseChange" Action="CalkPosition" Final="NeedRedraw" />
+    <Transition Initial="NeedRedraw" Event="MouseChange" Action="CalkPosition" Final="NeedRedraw" />
+    <Transition Initial="NeedRedraw" Event="MouseEnd" Action="Redraw" Final="Resting" />
+  </Transitions>
+</StateMachine>

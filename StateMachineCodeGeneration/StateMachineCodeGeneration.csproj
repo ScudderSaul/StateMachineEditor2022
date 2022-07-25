@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4CC4D317-6EAD-42A3-A80B-4B12C1F0FE4B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StateMachineCodeGeneration</RootNamespace>
+    <AssemblyName>StateMachineCodeGeneration</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ZapSmCoodeGen.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Example\Monster.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Monster1.cs</LastGenOutput>
+    </None>
+    <None Include="ConsoleTemplates\ConsoleAppconfig.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ConsoleAppconfig.cs</LastGenOutput>
+    </None>
+    <None Include="ConsoleTemplates\ConsoleAssemblyInfo.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ConsoleAssemblyInfo.cs</LastGenOutput>
+    </None>
+    <Content Include="ConsoleTemplates\Program.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Program1.cs</LastGenOutput>
+    </Content>
+    <Compile Include="ConsoleTemplates\ConsoleAssemblyInfo.cs">
+      <DependentUpon>ConsoleAssemblyInfo.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ConsoleTemplates\ConsoleAppconfig.cs">
+      <DependentUpon>ConsoleAppconfig.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ConsoleTemplates\Program1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Program.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsoleTemplates\ConsoleFile.cs">
+      <DependentUpon>ConsoleFile.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Example\Monster1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Monster.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachineCode.cs">
+      <DependentUpon>StateMachineCode.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachineCode.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StateMachineCode.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachineCodeGeneration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WpfTemplates\App.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>App.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WpfTemplates\Appconfig1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Appconfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WpfTemplates\Appxaml1.cs">
+      <DependentUpon>Appxaml.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WpfTemplates\ProjectFile.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectFile.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WpfTemplates\ResourceDesigner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceDesigner.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WpfTemplates\Resources.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WpfTemplates\Settings.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Settings.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WpfTemplates\SettingsDesigner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettingsDesigner.tt</DependentUpon>
+    </Compile>
+    <None Include="ConsoleTemplates\ConsoleFile.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ConsoleFile.cs</LastGenOutput>
+    </None>
+    <None Include="WpfTemplates\AssemblyInfo.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AssemblyInfo1.cs</LastGenOutput>
+    </None>
+    <Compile Include="WpfTemplates\AssemblyInfo1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WpfTemplates\MainWindow.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainWindow.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StateMachineCode.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>StateMachineCode.designer.cs</LastGenOutput>
+    </None>
+    <None Include="ZapSmCoodeGen.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="StateMachineCode.dbml.layout">
+      <DependentUpon>StateMachineCode.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmDataBase\SmSImpleData.csproj">
+      <Project>{2ff6bf7e-f7eb-4350-829c-60e3a1c89ade}</Project>
+      <Name>SmSImpleData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WpfTemplates\App.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>App.cs</LastGenOutput>
+    </None>
+    <None Include="WpfTemplates\Appconfig.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Appconfig1.cs</LastGenOutput>
+    </None>
+    <None Include="WpfTemplates\Appxaml.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Appxaml1.cs</LastGenOutput>
+    </None>
+    <None Include="WpfTemplates\MainWindow.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>MainWindow.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="WpfTemplates\ProjectFile.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ProjectFile.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WpfTemplates\ResourceDesigner.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ResourceDesigner.cs</LastGenOutput>
+    </None>
+    <None Include="WpfTemplates\Resources.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Resources.cs</LastGenOutput>
+    </None>
+    <None Include="WpfTemplates\SettingsDesigner.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SettingsDesigner.cs</LastGenOutput>
+    </None>
+    <None Include="WpfTemplates\Settings.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Settings.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
