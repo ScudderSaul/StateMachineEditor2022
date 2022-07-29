@@ -191,7 +191,7 @@
                                 <WrapPanel x:Name="XtraWrpPanel">
                                     <Expander ExpandDirection="Right" x:Name="AboutExpander" Header="About">
                                         <StackPanel MaxWidth="300">
-                                            <TextBlock Margin="5" Text="Copyright Saul Scudder 2006-2014" ></TextBlock>
+                                            <TextBlock Margin="5" Text="Copyright Saul Scudder 2006-2022" ></TextBlock>
                                             <TextBlock Margin="5" Text="The Generated code is free of copywrite or claim" ></TextBlock>
                                             <TextBlock  Margin="5" Text="At this time only the c# output has been tested. Report bugs or problems to the StateMachineEdi​torPackage page at http://visualstudiogallery.msdn.microsoft.com" TextWrapping="Wrap"></TextBlock>
                                         </StackPanel>
