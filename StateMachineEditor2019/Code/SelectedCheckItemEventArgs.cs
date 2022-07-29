@@ -1,8 +1,8 @@
 ﻿using System;
-using StateMachineEditor2019.Controls;
+using StateMachineEditor2022.Controls;
 using _ZenSoft.StateMachineEditor2017;
 
-namespace StateMachineEditor2019.Code
+namespace StateMachineEditor2022.Code
 {
    public class SelectedCheckItemEventArgs : EventArgs
     {

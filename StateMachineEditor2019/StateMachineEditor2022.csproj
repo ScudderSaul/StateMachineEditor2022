@@ -60,7 +60,7 @@
       <DependentUpon>StateMachineEditorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StateMachineEditor2019Package.cs" />
+    <Compile Include="StateMachineEditor2022Package.cs" />
     <Compile Include="StateMachineEditorToolWindow.cs" />
     <Compile Include="StateMachineEditorToolWindowCommand.cs" />
   </ItemGroup>
@@ -150,7 +150,7 @@
     <Content Include="Resources\TestClassChange.PNG" />
     <Content Include="Resources\ToRunTest.PNG" />
     <Content Include="Resources\Zoom_In_Out.png" />
-    <VSCTCompile Include="StateMachineEditor2019Package.vsct">
+    <VSCTCompile Include="StateMachineEditor2022Package.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
   </ItemGroup>

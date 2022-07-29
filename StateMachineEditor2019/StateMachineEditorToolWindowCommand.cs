@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 
-namespace StateMachineEditor2019
+namespace StateMachineEditor2022
 {
     /// <summary>
     /// Command handler
@@ -22,7 +22,8 @@ namespace StateMachineEditor2019
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("586fa546-9609-4320-912b-6cd907a86f6e");
+ //       public static readonly Guid CommandSet = new Guid("586fa546-9609-4320-912b-6cd907a86f6e");
+        public static readonly Guid CommandSet = new Guid("a613feae-5f27-4684-b0c2-8605676145fc");
 
         /// <summary>
         /// VS Package that provides this command, not null.

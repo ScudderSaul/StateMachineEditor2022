@@ -45,7 +45,7 @@ using System.Security.Permissions;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace StateMachineEditor2019.Code
+namespace StateMachineEditor2022.Code
 {
     //[Designer("System.Windows.Forms.Design.FolderBrowserDialogDesigner, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"), DefaultEvent("HelpRequest"), SRDescription("DescriptionFolderBrowserDialog"), DefaultProperty("SelectedPath")]
     public class FolderBrowserDialogEx : System.Windows.Forms.CommonDialog

@@ -4,7 +4,7 @@ using System.Threading;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
-namespace StateMachineEditor2019
+namespace StateMachineEditor2022
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -24,16 +24,16 @@ namespace StateMachineEditor2019
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [Guid(StateMachineEditor2019Package.PackageGuidString)]
+    [Guid(StateMachineEditor2022Package.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideToolWindow(typeof(StateMachineEditorToolWindow))]
-    public sealed class StateMachineEditor2019Package : AsyncPackage
+    public sealed class StateMachineEditor2022Package : AsyncPackage
     {
         /// <summary>
-        /// StateMachineEditor2019Package GUID string.
+        /// StateMachineEditor2022Package GUID string.
         /// </summary>
-        public const string PackageGuidString = "1ec5d8ce-1b9b-4d5a-aa66-c789e0622f0c";
-
+        public const string PackageGuidString = "755f75b3-aa06-40cb-80bc-81d04fe36930";
+      //  public const string PackageGuidString = "1ec5d8ce-1b9b-4d5a-aa66-c789e0622f0c";
         #region Package Members
 
         /// <summary>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.Shell;
-using StateMachineEditor2019.Controls;
+using StateMachineEditor2022.Controls;
 
-namespace StateMachineEditor2019
+namespace StateMachineEditor2022
 {
     /// <summary>
     /// This class implements the tool window exposed by this package and hosts a user control.
@@ -16,7 +16,9 @@ namespace StateMachineEditor2019
     /// implementation of the IVsUIElementPane interface.
     /// </para>
     /// </remarks>
-    [Guid("7205d4ce-cd59-42fe-9648-9d9427f5feed")]
+    /// [Guid("7205d4ce-cd59-42fe-9648-9d9427f5feed")]
+    /// to  40d2e56c-2142-40cf-9025-5c9c948c1ae8
+    [Guid("40d2e56c-2142-40cf-9025-5c9c948c1ae8")]
     public class StateMachineEditorToolWindow : ToolWindowPane
     {
         /// <summary>

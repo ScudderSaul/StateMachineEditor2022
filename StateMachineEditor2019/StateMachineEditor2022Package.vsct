@@ -22,7 +22,7 @@
 
   <!--The Commands section is where commands, menus, and menu groups are defined.
       This section uses a Guid to identify the package that provides the command defined inside it. -->
-  <Commands package="guidStateMachineEditor2019Package">
+  <Commands package="guidStateMachineEditor2022Package">
     <!-- Inside this section we have different sub-sections: one for the menus, another
     for the menu groups, one for the buttons (the actual commands), one for the combos
     and the last one for the bitmaps used. Each element is identified by a command id that
@@ -42,7 +42,7 @@
               <CommandFlag>DefaultInvisible</CommandFlag>
               <CommandFlag>DynamicVisibility</CommandFlag>
           If you do not want an image next to your command, remove the Icon node /> -->
-      <Button guid="guidStateMachineEditor2019PackageCmdSet" id="StateMachineEditorToolWindowCommandId" priority="0x0100" type="Button">
+      <Button guid="guidStateMachineEditor2022PackageCmdSet" id="StateMachineEditorToolWindowCommandId" priority="0x0100" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
@@ -64,14 +64,21 @@
 
   <Symbols>
     <!-- This is the package guid. -->
-    <GuidSymbol name="guidStateMachineEditor2019Package" value="{1ec5d8ce-1b9b-4d5a-aa66-c789e0622f0c}" />
+	  <!-- GuidSymbol name="guidStateMachineEditor2022Package" value="{1ec5d8ce-1b9b-4d5a-aa66-c789e0622f0c}" -->
+	<GuidSymbol name="guidStateMachineEditor2022Package" value="{755f75b3-aa06-40cb-80bc-81d04fe36930}" />
 
-    <!-- This is the guid used to group the menu commands together -->
-    <GuidSymbol name="guidStateMachineEditor2019PackageCmdSet" value="{586fa546-9609-4320-912b-6cd907a86f6e}">
-      <IDSymbol name="StateMachineEditorToolWindowCommandId" value="0x0100" />
+
+	  <!-- This is the guid used to group the menu commands together -->
+	  <!-- GuidSymbol name="guidStateMachineEditor2019PackageCmdSet" value="{586fa546-9609-4320-912b-6cd907a86f6e}" -->
+	<GuidSymbol name="guidStateMachineEditor2022PackageCmdSet" value="{a613feae-5f27-4684-b0c2-8605676145fc}">
+
+
+			<IDSymbol name="StateMachineEditorToolWindowCommandId" value="0x0100" />
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{fd736508-cb38-4a16-ac84-ea5d4f54a309}" >
+	  <!-- GuidSymbol name="guidImages" value="{fd736508-cb38-4a16-ac84-ea5d4f54a309}" -->
+
+	<GuidSymbol name="guidImages" value="{48ac6a84-cf26-4eef-aa41-ca33c61f7f1f}" >
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />

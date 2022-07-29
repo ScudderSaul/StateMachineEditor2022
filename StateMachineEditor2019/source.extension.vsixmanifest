@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="StateMachineEditor2019.4419c8bc-d09e-462c-a36a-40f7a80a5df3" Version="1.0" Language="en-US" Publisher="Saul Scudder" />
-        <DisplayName>StateMachineEditor2019</DisplayName>
+        <Identity Id="StateMachineEditor2022.4419c8bc-d09e-462c-a36a-40f7a80a5df3" Version="1.0" Language="en-US" Publisher="Saul Scudder" />
+        <DisplayName>StateMachineEditor2022</DisplayName>
         <Description xml:space="preserve">From an XML state machine skeleton code for an event driven state machine is generated, This package contains the generator and a tool to design the xml skeleton</Description>
     </Metadata>
     <Installation>

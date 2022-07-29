@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using MVCStateMachineCodeGeneration;
 using SmSimpleData;
 using StateMachineCodeGeneration;
-using StateMachineEditor2019.Code;
+using StateMachineEditor2022.Code;
 using StatePattern;
 using _ZenSoft.StateMachineEditor2017;
 using MessageBox = System.Windows.MessageBox;
@@ -22,7 +22,7 @@ using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using TextBox = System.Windows.Controls.TextBox;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace StateMachineEditor2019.Controls
+namespace StateMachineEditor2022.Controls
 {
     /// <summary>
     /// Interaction logic for MyControl.xaml

@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using StateMachineEditor2019.Code;
+using StateMachineEditor2022.Code;
 
-namespace StateMachineEditor2019.Controls
+namespace StateMachineEditor2022.Controls
 {
     /// <summary>
     /// Interaction logic for CheckItem.xaml
